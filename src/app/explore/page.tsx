@@ -1,21 +1,43 @@
-import ModelCard from "@/components/explore/card";
-import { Input } from "@/components/ui/input";
+"use client";
 
-function page() {
+import type { PutBlobResult } from "@vercel/blob";
+import { useState, useRef } from "react";
+
+export default function AvatarUploadPage() {
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const [blob, setBlob] = useState<PutBlobResult | null>(null);
   return (
-    <div className="m-2">
-      <h1 className="text-4xl font-bold text-center mt-10">Model MarketPlace</h1>
-      <div className="m-2">
-        <h4 className="font-bold">Model Name</h4>
-        <Input type="email" placeholder="Like GPT 4"/>
-      </div>
-      <div className="">
+    <>
+      <h1>Upload Your Avatar</h1>
 
-        <h4 className="font-bold">Featured Models</h4>
-        <ModelCard />
-      </div>
-    </div>
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
+
+          if (!inputFileRef.current?.files) {
+            throw new Error("No file selected");
+          }
+
+          const file = inputFileRef.current.files[0];
+
+          const response = await fetch(`/api/upload?filename=${file.name}`, {
+            method: "POST",
+            body: file,
+          });
+
+          const newBlob = (await response.json()) as PutBlobResult;
+
+          setBlob(newBlob);
+        }}
+      >
+        <input name="file" ref={inputFileRef} type="file" required />
+        <button type="submit">Upload</button>
+      </form>
+      {blob && (
+        <div>
+          Blob url: <a href={blob.url}>{blob.url}</a>
+        </div>
+      )}
+    </>
   );
 }
-
-export default page;

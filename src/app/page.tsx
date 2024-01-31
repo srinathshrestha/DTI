@@ -1,42 +1,43 @@
+import ModelCard from "@/components/explore/card";
+import { Input } from "@/components/ui/input";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import AvatarUploadPage from "@/components/root/Upload";
+import AddModel from "@/components/root/AddModel";
 
-export default function Home() {
+function page() {
   return (
-    <div>
-      <Sheet >
-        <SheetTrigger>Open</SheetTrigger>
-        <SheetContent side={"left"}>
-          <SheetHeader>
-            <SheetTitle>Models</SheetTitle>
-            <SheetDescription>
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Theme" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
-                  <SelectItem value="system">System</SelectItem>
-                </SelectContent>
-              </Select>
-            </SheetDescription>
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
+    <div className="m-2">
+      <h1 className="text-4xl font-bold text-center mt-10">
+        Model MarketPlace
+      </h1>
+      <div className="m-2">
+        <h4 className="font-bold">Model Name</h4>
+        <Input type="email" placeholder="Like GPT 4" />
+      </div>
+      <div className="">
+        <h4 className="font-bold">Featured Models</h4>
+        <ModelCard />
+      </div>
+      <Dialog>
+        <DialogTrigger>Open</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+            <AddModel/>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
+
+export default page;

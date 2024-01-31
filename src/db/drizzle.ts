@@ -9,7 +9,7 @@ import { loadEnvConfig } from "@next/env";
 
  const pool = new Pool({
    connectionString: process.env.DATABASE_URL,
-   ssl: true,
+  //  ssl: true,
  });
 
 
