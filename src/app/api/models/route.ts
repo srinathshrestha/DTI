@@ -12,6 +12,9 @@ export async function GET(request: Request) {
   let models: any;
   if (id) {
     models = await db.select().from(ModelsTable).where(eq(ModelsTable.id, id));
+    if (models.length === 1) {
+      return NextResponse.json(models[0]);
+    }
   } else {
     models = await db.select().from(ModelsTable);
   }
