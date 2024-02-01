@@ -8,3 +8,10 @@ export const ModelsTable = pgTable("models", {
   applications: text("applications").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
+
+
+import { type InferSelectModel, type InferInsertModel } from "drizzle-orm";
+
+
+
+export type models = InferSelectModel<typeof ModelsTable>;

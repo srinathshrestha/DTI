@@ -7,32 +7,30 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
-
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-function ModelCard() {
+function ModelCard({ name, description, logo }:any) {
+  console.log("logo", logo);
   return (
     <div>
       <Card className="h-48 w-80 hover:bg-gray-50">
         <CardHeader>
           <CardTitle className="flex gap-2">
-            <Image
-              src="/logo/openai.png"
-              height={20}
-              width={20}
-              alt="openai logo"
-            />
-            GPT 4
+            <Avatar>
+              <AvatarImage src={logo} />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            {name}
           </CardTitle>
-          <CardDescription>by Open Ai</CardDescription>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardContent>
           <p>Card Content</p>
         </CardContent>
         <CardFooter>
           <p className="flex gap-2">
-            Explore
-            <ArrowRight />
+            Explore <ArrowRight />
           </p>
         </CardFooter>
       </Card>

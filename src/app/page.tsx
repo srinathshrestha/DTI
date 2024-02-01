@@ -1,17 +1,41 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+//@ts-nocheck
+"use client";
+import create from "zustand";
 import ModelCard from "@/components/explore/card";
 import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import AvatarUploadPage from "@/components/root/Upload";
 import AddModel from "@/components/root/AddModel";
+import { useEffect } from "react";
 
-function page() {
+export const useModelStore = create((set) => ({
+  models: [],
+  setModels: (models) => set({ models }),
+  addModel: (newModel) =>
+    set((state) => ({ models: [...state.models, newModel] })),
+}));
+
+function Page() {
+  const { models, setModels, addModel } = useModelStore();
+
+  useEffect(() => {
+    const fetchModels = async () => {
+      try {
+        const response = await fetch("/api/models");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch models");
+        }
+
+        const modelsData = await response.json();
+        setModels(modelsData);
+      } catch (error) {
+        console.error("Error fetching models:", error.message);
+      }
+    };
+
+    fetchModels();
+  }, [setModels]);
+
   return (
     <div className="m-2">
       <h1 className="text-4xl font-bold text-center mt-10">
@@ -23,21 +47,25 @@ function page() {
       </div>
       <div className="">
         <h4 className="font-bold">Featured Models</h4>
-        <ModelCard />
+
+        <div className="flex flex-wrap gap-4">
+          {models.map((model, index) => (
+            <div
+              key={index}
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4"
+            >
+              <ModelCard
+                modelName={model.name}
+                description={model.description}
+                logo={model.logo}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      <Dialog>
-        <DialogTrigger>Open</DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-            <AddModel/>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      <AddModel onAddModel={addModel} />
     </div>
   );
 }
 
-export default page;
+export default Page;
