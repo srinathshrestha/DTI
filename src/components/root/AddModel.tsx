@@ -15,10 +15,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useModelStore } from "@/app/page";
 import { Button } from "../ui/button";
 import { Form } from "../ui/form";
+
 import { z } from "zod";
+
 function AddModel() {
   const formSchema = z.object({
     name: z.string().min(2).max(10),
+    logo: z.string(),
+    description: z.string().min(10).max(1000),
+    applications: z.string().min(10).max(1000),
+    link: z.string(),
+    usage: z.string().min(10).max(1000),
   });
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -30,6 +37,7 @@ function AddModel() {
   const onSubmit: SubmitHandler<any> = async (data) => {
     console.log("clicked");
     console.log("data", data);
+    setDialogOpen(false);
     try {
       const response = await fetch("/api/models", {
         method: "POST",
@@ -38,7 +46,7 @@ function AddModel() {
         },
         body: JSON.stringify(data),
       });
-      setDialogOpen(false);
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -55,13 +63,24 @@ function AddModel() {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
-      <DialogTrigger onClick={() => setDialogOpen(true)}>Open</DialogTrigger>
+      <DialogTrigger
+        onClick={() => setDialogOpen(true)}
+        className="w-[200px] bg-blue-600 text-white h-[40px] rounded-md font-semibold hover:bg-blue-500"
+      >
+        Add your own model
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add your own model</DialogTitle>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              {/* <UploadIcon /> */}
+              <UploadIcon
+                control={form.control}
+                label="Logo"
+                id="logo"
+                placeholder="Choose file"
+                setValue={form.setValue}
+              />
               <FormInput
                 control={form.control}
                 label="Model Name"

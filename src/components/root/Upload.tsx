@@ -7,9 +7,28 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useFormContext } from "react-hook-form";
 import { useFormStore } from "@/strore/form";
 import { Image } from "lucide-react";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+interface UploadIcon {
+  label: string;
+  id: string;
+  placeholder: string;
+  control: any;
+  setValue: any;
+}
 
-export default function UploadIcon() {
-  const { register, setValue } = useFormContext();
+export default function UploadIcon({
+  control,
+  id,
+  label,
+  placeholder,
+  setValue,
+}: UploadIcon) {
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const { blob, uploading, setBlob, setUploading } = useFormStore();
@@ -58,14 +77,23 @@ export default function UploadIcon() {
           <Image />
         )}
         <div>
-          <Input
-            {...register("logo")}
-            id="picture"
-            type="file"
-            ref={inputFileRef}
-            // required
-            onChange={handleFileChange}
-            className="h-10 w-full"
+          <FormField
+            control={control}
+            name={id}
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    id={id}
+                    type="file"
+                    ref={inputFileRef}
+                    onChange={handleFileChange}
+                    className="h-10 w-full"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
           {uploading && <p>Uploading...</p>}
         </div>
