@@ -17,14 +17,14 @@ import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 import { z } from "zod";
 function AddModel() {
-  // const formSchema = z.object({
-  //   username: z.string().min(2).max(10),
-  // });
+  const formSchema = z.object({
+    name: z.string().min(2).max(10),
+  });
   const form = useForm({
-    // resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema),
   });
   //@ts-ignore
-  // const { addModel } = useModelStore();
+  const { addModel } = useModelStore();
   const [isDialogOpen, setDialogOpen] = React.useState(false);
 
   const onSubmit: SubmitHandler<any> = async (data) => {
@@ -38,17 +38,16 @@ function AddModel() {
         },
         body: JSON.stringify(data),
       });
-
+      setDialogOpen(false);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const responseData = await response.json();
       console.log("Response from server:", responseData);
-      setDialogOpen(false);
 
       form.reset();
-      // await addModel(data);
+      await addModel(data);
     } catch (error) {
       console.error("Error during submission:", error);
     }
