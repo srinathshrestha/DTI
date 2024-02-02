@@ -7,10 +7,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-function ModelCard({ name, description, logo }:any) {
+
+ interface TModelCardProps {
+  name: string;
+  description: string;
+  logo: string;
+}
+
+function ModelCard({ name, description, logo }: TModelCardProps) {
   return (
     <div>
       <Card className="h-48 w-80 hover:bg-gray-50">

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "migration:generate": "drizzle-kit generate:pg --schema=./src/db/schema/*",
-    "migration:push": "node -r esbuild-register src/db/migrate.ts"
+    "migration:push": "node -r esbuild-register src/db/migrate.ts",
+    "cleanup" : "rm -rf .drizzle .next node_modules .vercel"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
