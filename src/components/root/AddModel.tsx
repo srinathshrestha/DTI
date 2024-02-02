@@ -15,18 +15,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useModelStore } from "@/app/page";
 import { Button } from "../ui/button";
 import { Form } from "../ui/form";
-
-import { z } from "zod";
+import { formSchema } from "@/utils/formSchema";
 
 function AddModel() {
-  const formSchema = z.object({
-    name: z.string().min(2).max(10),
-    logo: z.string(),
-    description: z.string().min(10).max(1000),
-    applications: z.string().min(10).max(1000),
-    link: z.string(),
-    usage: z.string().min(10).max(1000),
-  });
+
   const form = useForm({
     resolver: zodResolver(formSchema),
   });

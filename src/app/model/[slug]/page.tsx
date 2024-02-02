@@ -4,7 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-function ModelDetail({ params }: { params: { slug: string } }) {
+
+
+function ModelDetailPage({ params }: { params: { slug: string } }) {
   const id = params.slug;
   const [model, setModel] = useState<any>(null);
 
@@ -74,4 +76,4 @@ function ModelDetail({ params }: { params: { slug: string } }) {
   );
 }
 
-export default ModelDetail;
+export default ModelDetailPage;
