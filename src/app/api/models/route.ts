@@ -31,20 +31,18 @@ export async function GET(request: Request) {
   if (id) {
     models = await db.select().from(ModelsTable).where(eq(ModelsTable.id, id));
     if (models.length === 1) {
-      await redis.set(cacheKey, JSON.stringify(models[0]));
+      await redis.setex(cacheKey,36, JSON.stringify(models[0]));
       return NextResponse.json(models[0]);
     }
   } else {
     models = await db.select().from(ModelsTable);
-    await redis.set(cacheKey, JSON.stringify(models));
+    await redis.setex(cacheKey,36, JSON.stringify(models));
   }
   return NextResponse.json(models);
 }
 
 export async function POST(request: Request) {
   const req = await request.json();
-  await db.insert(ModelsTable).values(req).returning();
-  console.log("req", req);
-  const models = await db.select().from(ModelsTable);
-  return NextResponse.json(models);
+  const model = await db.insert(ModelsTable).values(req).returning();
+  return NextResponse.json(model);
 }

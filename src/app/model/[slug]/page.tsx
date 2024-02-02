@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
@@ -69,9 +70,7 @@ function ModelDetailPage({ params }: { params: { slug: string } }) {
           <p className="mt-4 text-gray-600">{model.usage}</p>
         </section>
       </main>
-      <footer className="h-16 flex items-center justify-center bg-gray-800 text-white">
-        <p>© 2024 arunavabasu.com All rights reserved.</p>
-      </footer>
+    <Footer/>
     </div>
   );
 }

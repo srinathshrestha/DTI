@@ -8,33 +8,37 @@ import {
 } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-
-
- interface TModelCardProps {
+import { Badge } from "../ui/badge";
+interface TModelCardProps {
   name: string;
   description: string;
   logo: string;
+  tag: string;
 }
 
-function ModelCard({ name, description, logo }: TModelCardProps) {
+function ModelCard({ name, description, logo, tag }: TModelCardProps) {
+  console.log("tag", tag);
   return (
     <div>
-      <Card className="h-48 w-80 hover:bg-gray-50">
+      <Card className="h-52 w-80 hover:bg-gray-50">
         <CardHeader>
           <CardTitle className="flex gap-2">
             <Avatar>
               <AvatarImage src={logo} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            {name}
           </CardTitle>
-          <CardDescription>{description}</CardDescription>
+          <CardDescription className="space-x-2 flex gap-2 truncate">
+            {name}
+
+            <Badge className="bg-emerald-400"> {tag}</Badge>
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Card Content</p>
+          <p className="truncate">{description}</p>
         </CardContent>
         <CardFooter>
-          <p className="flex gap-2">
+          <p className="flex gap-2 pb-4">
             Explore <ArrowRight />
           </p>
         </CardFooter>

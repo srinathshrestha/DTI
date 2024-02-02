@@ -18,7 +18,6 @@ import { Form } from "../ui/form";
 import { formSchema } from "@/utils/formSchema";
 
 function AddModel() {
-
   const form = useForm({
     resolver: zodResolver(formSchema),
   });
@@ -83,13 +82,19 @@ function AddModel() {
                 control={form.control}
                 label="Description"
                 id="description"
-                placeholder="Like GPT4"
+                placeholder="GPT4 is a large language model"
               />
               <FormInput
                 control={form.control}
                 label="Link"
                 id="link"
-                placeholder="Like GPT4"
+                placeholder="https://chat.openai.com/"
+              />
+              <FormInput
+                control={form.control}
+                label="tag"
+                id="tag"
+                placeholder="Like LLM,text-to-image etc"
               />
               <FormTextArea
                 control={form.control}
