@@ -1,6 +1,6 @@
 "use client";
 import type { PutBlobResult } from "@vercel/blob";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -11,8 +11,6 @@ import { Image } from "lucide-react";
 export default function UploadIcon() {
   const { register, setValue } = useFormContext();
   const inputFileRef = useRef<HTMLInputElement>(null);
-  //   const [blob, setBlob] = useState<PutBlobResult | null>(null);
-  //   const [uploading, setUploading] = useState(false);
 
   const { blob, uploading, setBlob, setUploading } = useFormStore();
   const handleFileChange = async (event: any) => {
@@ -42,12 +40,17 @@ export default function UploadIcon() {
 
   return (
     <div>
-      <Label className="font-bold text-black" >Logo</Label>
-      <div className="flex gap-2 items-center mt-2">
+      <Label>Logo</Label>
+      <div className="flex gap-2 items-center mt-2 mb-4 w-ful">
         {blob ? (
           <div>
             <Avatar>
-              <AvatarImage src={blob.url} alt="Uploaded Avatar" height={5} width={5} />
+              <AvatarImage
+                src={blob.url}
+                alt="Uploaded Avatar"
+                height={5}
+                width={5}
+              />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </div>
@@ -62,6 +65,7 @@ export default function UploadIcon() {
             ref={inputFileRef}
             required
             onChange={handleFileChange}
+            className="h-10 w-full"
           />
           {uploading && <p>Uploading...</p>}
         </div>

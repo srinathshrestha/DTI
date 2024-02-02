@@ -7,8 +7,9 @@ import { Input } from "@/components/ui/input";
 import AddModel from "@/components/root/AddModel";
 import { useEffect } from "react";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
-// ... (previous imports)
+
 
 export const useModelStore = create((set) => ({
   models: [],
@@ -25,14 +26,11 @@ export const useModelStore = create((set) => ({
 
 // ... (imports and useModelStore definition)
 
+// ... (imports)
+
 function Page() {
-  const {
-    models,
-    setModels,
-    addModel,
-    searchQuery,
-    setSearchQuery,
-  } = useModelStore();
+  const { models, setModels, addModel, searchQuery, setSearchQuery } =
+    useModelStore();
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -59,44 +57,49 @@ function Page() {
   };
 
   return (
-    <div className="m-2">
-      <h1 className="text-4xl font-bold text-center mt-10">
-        Model Marketplace
-      </h1>
-      <div className="m-2">
-        <h4 className="font-bold">Model Name</h4>
-        <Input
-          type="text"
-          placeholder="Like GPT 4"
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
-      </div>
-      <div className="">
-        <h4 className="font-bold">Featured Models</h4>
+    <div>
+      <Navbar />
 
-        <div className="flex flex-wrap gap-4">
-          {models
-            .filter((model) =>
-              model.name.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-            .map((model, index) => (
-              <div
-                key={index}
-                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4"
-              >
-                <Link href={`/model/${model.id}`}>
-                  <ModelCard
-                    modelName={model.name}
-                    description={model.description}
-                    logo={model.logo}
-                  />
-                </Link>
-              </div>
-            ))}
+      <div className="w-full flex flex-col items-center justify-center p-4">
+        <div className="w-full max-w-screen-lg flex flex-col items-center justify-center p-4">
+          <h1 className="text-4xl font-bold text-center mt-20">
+            Model Marketplace
+          </h1>
+          <div className="flex items-start w-full space-x-4">
+            <div className="w-2/3">
+              <h4 className="font-bold">Model Name</h4>
+              <Input
+                type="text"
+                placeholder="Like GPT 4"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="w-full"
+              />
+            </div>
+            <div className="w-1/3">
+              <AddModel onAddModel={addModel} />
+            </div>
+          </div>
+          <h4 className="font-bold text-left mt-4">Featured Models</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {models
+              .filter((model) =>
+                model.name.toLowerCase().includes(searchQuery.toLowerCase())
+              )
+              .map((model, index) => (
+                <div key={index}>
+                  <Link href={`/model/${model.id}`}>
+                    <ModelCard
+                      modelName={model.name}
+                      description={model.description}
+                      logo={model.logo}
+                    />
+                  </Link>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
-      <AddModel onAddModel={addModel} />
     </div>
   );
 }

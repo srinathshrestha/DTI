@@ -1,10 +1,9 @@
-// FormField.jsx
-import React from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 
-const FormField = ({ label, id, placeholder, register, required }:any) => (
-  <div className="grid w-full max-w-sm items-center gap-1.5">
+const FormInput = ({ label, id, placeholder, register, required }: any) => (
+  <div className="grid w-full  items-center gap-1.5 mb-4 ">
     <Label>{label}</Label>
     <Input
       type="text"
@@ -15,4 +14,16 @@ const FormField = ({ label, id, placeholder, register, required }:any) => (
   </div>
 );
 
-export default FormField;
+const FormTextArea = ({ label, id, placeholder, register, required }: any) => (
+  <div className="grid w-full  items-center gap-1.5 mb-4">
+    <Label>{label}</Label>
+
+    <Textarea
+      id={id}
+      placeholder={placeholder}
+      {...register(id, { required })}
+    />
+  </div>
+);
+// export default FormInput;
+export { FormTextArea, FormInput };
