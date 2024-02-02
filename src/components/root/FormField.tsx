@@ -1,29 +1,61 @@
-import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+interface TFieldProps {
+  label: string;
+  id: string;
+  placeholder: string;
+  control: any;
+}
 
-const FormInput = ({ label, id, placeholder, register, required }: any) => (
-  <div className="grid w-full  items-center gap-1.5 mb-4 ">
-    <Label>{label}</Label>
-    <Input
-      type="text"
-      id={id}
-      placeholder={placeholder}
-      {...register(id, { required })}
+function FormInput({ label, id, placeholder, control }: TFieldProps) {
+  return (
+    <FormField
+      control={control}
+      name={id}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>{label}</FormLabel>
+          <FormControl>
+            <Input
+              type="text"
+              id={id}
+              placeholder={placeholder}
+              onChange={field.onChange}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
     />
-  </div>
-);
-
-const FormTextArea = ({ label, id, placeholder, register, required }: any) => (
-  <div className="grid w-full  items-center gap-1.5 mb-4">
-    <Label>{label}</Label>
-
-    <Textarea
-      id={id}
-      placeholder={placeholder}
-      {...register(id, { required })}
+  );
+}
+function FormTextArea({ label, id, placeholder, control }: TFieldProps) {
+  return (
+    <FormField
+      control={control}
+      name={id}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>{label}</FormLabel>
+          <FormControl>
+            <Textarea
+              id={id}
+              placeholder={placeholder}
+              onChange={field.onChange}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
     />
-  </div>
-);
-// export default FormInput;
-export { FormTextArea, FormInput };
+  );
+}
+
+export { FormInput, FormTextArea };

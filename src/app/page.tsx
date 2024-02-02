@@ -24,10 +24,6 @@ export const useModelStore = create((set) => ({
     })),
 }));
 
-// ... (imports and useModelStore definition)
-
-// ... (imports)
-
 function Page() {
   const { models, setModels, addModel, searchQuery, setSearchQuery } =
     useModelStore();
@@ -55,7 +51,7 @@ function Page() {
     const query = e.target.value;
     setSearchQuery(query);
   };
-
+const featuredModels = models.filter((model) => model.featured);
   return (
     <div>
       <Navbar />
@@ -81,6 +77,21 @@ function Page() {
             </div>
           </div>
           <h4 className="font-bold text-left mt-4">Featured Models</h4>
+          {/*featured true models*/}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {featuredModels.map((model, index) => (
+              <div key={index}>
+                <Link href={`/model/${model.id}`}>
+                  <ModelCard
+                    modelName={model.name}
+                    description={model.description}
+                    logo={model.logo}
+                  />
+                </Link>
+              </div>
+            ))}
+          </div>
+          <h4>All Models</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {models
               .filter((model) =>

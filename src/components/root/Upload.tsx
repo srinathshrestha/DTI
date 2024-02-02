@@ -63,7 +63,7 @@ export default function UploadIcon() {
             id="picture"
             type="file"
             ref={inputFileRef}
-            required
+            // required
             onChange={handleFileChange}
             className="h-10 w-full"
           />

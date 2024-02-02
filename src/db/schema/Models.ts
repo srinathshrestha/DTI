@@ -1,5 +1,5 @@
 import { InferSelectModel } from "drizzle-orm";
-import { pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
+import { boolean, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 
 export const ModelsTable = pgTable("models", {
   id: uuid("id").primaryKey().notNull().defaultRandom(),
@@ -10,6 +10,8 @@ export const ModelsTable = pgTable("models", {
   description: varchar("description", { length: 400 }).notNull(),
   usage: text("usage").notNull(),
   applications: text("applications").notNull(),
+  featured: boolean("featured")
+  
 });
 
 export type TModel = InferSelectModel<typeof ModelsTable>;

@@ -11,7 +11,6 @@ import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 function ModelCard({ name, description, logo }:any) {
-  console.log("logo", logo);
   return (
     <div>
       <Card className="h-48 w-80 hover:bg-gray-50">
