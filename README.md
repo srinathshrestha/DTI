@@ -6,24 +6,24 @@ Hex is an innovative , minimalist model marketplace that empowers users to explo
 
 ## **Tech Stack**
 
-1. _**Next.js**_ : frontend and backend framework
-2. _**Shadcn UI**_ : ui library 
-3. _**React Hook Form**_ : form management
-4. _**PostgreSQL DB**_ : storing model data 
-5. _**Redis**_ : caching
-6. _**Vercel Blob**_ : object storage
+1. _Next.js_ : frontend and backend framework
+2. _Shadcn UI_ : ui library 
+3. _React Hook Form_ : form management
+4. _PostgreSQL DB_ : storing model data 
+5. _Redis_ : caching
+6. _Vercel Blob_ : object storage
 
 ## Features
 
-1. _**Model Browsing**_: Explore a curated selection of featured models.
-2. _**Submit Your Model**_: Easily showcase your own model information on the platform.
-3. _**Browse Model Info**_: Dive into detailed information about various models.
-4. _**Search Convenience**_: Utilize a user-friendly search field for efficient model discovery.
+1. _Model Browsing_ : Explore a curated selection of featured models.
+2. _Submit Your Model_ : Easily showcase your own model information on the platform.
+3. _Browse Model Info_ : Dive into detailed information about various models.
+4. _Search Convenience_ : Utilize a user-friendly search field for efficient model discovery.
 
 ### Optimizations
 
-1. _**API Response Optimization**_: Ensuring  efficient responses from our API through caching.
-2. _**UI Performance**_: Eliminating unnecessary UI re-renders for a smoother interface.
+1. _API Response Optimization_: Ensuring  efficient responses from our API through caching.
+2. _UI Performance_: Eliminating unnecessary UI re-renders for a smoother interface.
 Setup
 
 ## **Setup**
@@ -42,7 +42,7 @@ yarn install
 cp cp .env.sample .env
 
 # start app
-yarn start
+yarn dev
 ```
 
 ## Contributing
