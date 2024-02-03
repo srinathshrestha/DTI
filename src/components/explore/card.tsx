@@ -24,8 +24,8 @@ function ModelCard({ name, description, logo, tag }: TModelCardProps) {
         <CardHeader>
           <CardTitle className="flex gap-2">
             <Avatar>
-              <AvatarImage src={logo} />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={logo} className="object-contain" />
+              <AvatarFallback>MM</AvatarFallback>
             </Avatar>
           </CardTitle>
           <CardDescription className="space-x-2 flex gap-2 truncate">

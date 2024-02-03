@@ -10,8 +10,7 @@ import Footer from "@/components/Footer";
 import { useModelStore } from "@/strore/modelStore";
 
 function Page() {
-  const { models, setModels, addModel, searchQuery, setSearchQuery } =
-    useModelStore();
+  const { models, setModels, searchQuery, setSearchQuery } = useModelStore();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -73,7 +72,9 @@ function Page() {
             </div>
           </div>
 
-          <h4 className="font-bold text-left mt-6 text-4xl">Featured Models</h4>
+          <h4 className="font-bold text-left mt-6 text-4xl mb-6">
+            Featured Models
+          </h4>
           {/* Featured true models */}
 
           {isLoading ? (
