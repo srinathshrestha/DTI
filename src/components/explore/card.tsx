@@ -13,7 +13,7 @@ interface TModelCardProps {
   name: string;
   description: string;
   logo: string;
-  tag: string;
+  tag: string | null;
 }
 
 function ModelCard({ name, description, logo, tag }: TModelCardProps) {

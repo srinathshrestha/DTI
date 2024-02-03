@@ -12,16 +12,17 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useModelStore } from "@/app/page";
+
 import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 import { formSchema } from "@/utils/formSchema";
+import { useModelStore } from "@/strore/modelStore";
 
 function AddModel() {
   const form = useForm({
     resolver: zodResolver(formSchema),
   });
-  //@ts-ignore
+
   const { addModel } = useModelStore();
   const [isDialogOpen, setDialogOpen] = React.useState(false);
 
@@ -46,7 +47,7 @@ function AddModel() {
       console.log("Response from server:", responseData);
 
       form.reset();
-      await addModel(data);
+      addModel(data);
     } catch (error) {
       console.error("Error during submission:", error);
     }

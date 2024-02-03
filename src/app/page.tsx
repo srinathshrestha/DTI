@@ -1,8 +1,4 @@
-//@ts-nocheck
-
 "use client";
-
-import { create } from "zustand";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -11,27 +7,12 @@ import ModelCard from "@/components/explore/card";
 import { Input } from "@/components/ui/input";
 import AddModel from "@/components/root/AddModel";
 import Footer from "@/components/Footer";
-
-export const useModelStore = create((set) => ({
-  models: [],
-  searchQuery: "",
-  setModels: (models) => set({ models, allModels: models }),
-  setSearchQuery: (query) => set({ searchQuery: query }),
-  addModel: (newModel) =>
-    set((state) => ({
-      models: [...state.models, newModel],
-    })),
-}));
+import { useModelStore } from "@/strore/modelStore";
 
 function Page() {
-  const {
-    models,
-    setModels,
-    addModel,
-    searchQuery,
-    setSearchQuery,
-    allModels,
-  } = useModelStore();
+  const { models, setModels, addModel, searchQuery, setSearchQuery } =
+    useModelStore();
+
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -46,8 +27,8 @@ function Page() {
 
         const modelsData = await response.json();
         setModels(modelsData);
-      } catch (error) {
-        console.error("Error fetching models:", error.message);
+      } catch (e: any) {
+        console.error("Error fetching models:", e.message);
       } finally {
         setIsLoading(false);
       }
@@ -56,7 +37,7 @@ function Page() {
     fetchModels();
   }, [setModels]);
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: any) => {
     const query = e.target.value;
     setSearchQuery(query);
   };
@@ -88,7 +69,7 @@ function Page() {
             </div>
 
             <div className="w-1/3 mt-6">
-              <AddModel onAddModel={addModel} />
+              <AddModel />
             </div>
           </div>
 
