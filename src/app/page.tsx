@@ -14,20 +14,24 @@ import Footer from "@/components/Footer";
 
 export const useModelStore = create((set) => ({
   models: [],
-  allModels: [],
   searchQuery: "",
   setModels: (models) => set({ models, allModels: models }),
   setSearchQuery: (query) => set({ searchQuery: query }),
   addModel: (newModel) =>
     set((state) => ({
       models: [...state.models, newModel],
-      allModels: [...state.allModels, newModel],
     })),
 }));
 
 function Page() {
-  const { models, setModels, addModel, searchQuery, setSearchQuery } =
-    useModelStore();
+  const {
+    models,
+    setModels,
+    addModel,
+    searchQuery,
+    setSearchQuery,
+    allModels,
+  } = useModelStore();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

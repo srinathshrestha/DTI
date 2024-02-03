@@ -21,6 +21,7 @@ export async function GET(request: Request) {
   const cacheKey = id ? `models:${id}` : "models:all";
   let models: any;
   const cachedData = await redis.get(cacheKey);
+
   if (cachedData) {
     console.log("Cache Hit:", cacheKey);
     return NextResponse.json(cachedData);
@@ -31,12 +32,16 @@ export async function GET(request: Request) {
   if (id) {
     models = await db.select().from(ModelsTable).where(eq(ModelsTable.id, id));
     if (models.length === 1) {
-      await redis.setex(cacheKey,36, JSON.stringify(models[0]));
+      await redis.set(cacheKey, JSON.stringify(models[0]));
+      // Add expiration for 2 seconds
+      await redis.expire(cacheKey, 2);
       return NextResponse.json(models[0]);
     }
   } else {
     models = await db.select().from(ModelsTable);
-    await redis.setex(cacheKey,36, JSON.stringify(models));
+    await redis.set(cacheKey, JSON.stringify(models));
+    // Add expiration for 2 seconds
+    await redis.expire(cacheKey, 2);
   }
   return NextResponse.json(models);
 }

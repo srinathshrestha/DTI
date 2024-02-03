@@ -1,19 +1,14 @@
 "use client";
 import type { PutBlobResult } from "@vercel/blob";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useFormContext } from "react-hook-form";
 import { useFormStore } from "@/strore/form";
 import { Image } from "lucide-react";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { FormControl, FormField, FormItem, FormMessage } from "../ui/form";
+import { Progress } from "@/components/ui/progress";
+
 interface UploadIcon {
   label: string;
   id: string;
@@ -32,27 +27,33 @@ export default function UploadIcon({
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const { blob, uploading, setBlob, setUploading } = useFormStore();
+  const [progress, setProgress] = useState<number>(0);
   const handleFileChange = async (event: any) => {
     event.preventDefault();
+
     if (!inputFileRef.current?.files) {
       throw new Error("No file selected");
     }
     const file = inputFileRef.current.files[0];
     try {
       setUploading(true);
+      setProgress(30);
       const response = await fetch(`/api/upload?filename=${file.name}`, {
         method: "POST",
         body: file,
       });
+      setProgress(50);
       if (!response.ok) {
         throw new Error("File upload failed");
       }
       const newBlob = (await response.json()) as PutBlobResult;
+      setProgress(80);
       setBlob(newBlob);
       setValue("logo", newBlob?.url);
     } catch (error) {
       console.error("Error uploading file:", error);
     } finally {
+      setProgress(100);
       setUploading(false);
     }
   };
@@ -95,7 +96,7 @@ export default function UploadIcon({
               </FormItem>
             )}
           />
-          {uploading && <p>Uploading...</p>}
+          {uploading && <Progress value={progress} className="mt-2"/>}
         </div>
       </div>
     </div>
