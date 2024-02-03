@@ -1,6 +1,6 @@
 # **Hex**
 
-[Demo](https://github.com/arunavabasu-03/hex/blob/main/assets/demo.mp4)
+https://github.com/arunavabasu-03/hex/blob/main/assets/demo.mp4
 
 
 Hex is an innovative model marketplace that empowers users to explore featured models and effortlessly showcase their own model information.
