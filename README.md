@@ -4,47 +4,41 @@ Hex is an innovative model marketplace that empowers users to explore featured m
 
 ## **Tech Stack**
 
-1. Next.js: A versatile framework powering both frontend and backend.
-2. Shadcn UI: An intuitive UI library for a seamless user experience.
-3. React Hook Form: Efficient form management for a smooth data input process.
-4. PostgreSQL DB: Robust database for storing model data securely.
-5. Redis: High-performance caching to enhance system responsiveness.
-6. Vercel Blob: Reliable storage for model icons, ensuring a visually appealing experience.
+1. Next.js (frontend and backend).
+2. Shadcn UI ( ui library)
+3. React Hook Form  (form management )
+4. PostgreSQL DB
+5. Redis (caching)
+6. Vercel Blob (object storage)
 
 ## Features
 
-1. Model Browsing: Explore a curated selection of featured models.
-2. Submit Your Model: Easily showcase your own model information on the platform.
-3. Browse Model Info: Dive into detailed information about various models.
-4. Search Convenience: Utilize a user-friendly search field for efficient model discovery.
+1. **Model Browsing**: Explore a curated selection of featured models.
+2. **Submit Your Model**: Easily showcase your own model information on the platform.
+3. **Browse Model Info**: Dive into detailed information about various models.
+4. **Search Convenience**: Utilize a user-friendly search field for efficient model discovery.
 
 ### Optimizations
 
-We are committed to providing an optimized user experience. Key optimizations include:
-
-API Response Optimization: Ensuring swift and efficient responses from our API.
-App Load Time Enhancement: Utilizing caching techniques to minimize load times.
-UI Performance: Eliminating unnecessary UI re-renders for a smoother interface.
+1. **API Response Optimization**: Ensuring  efficient responses from our API through caching.
+2. **UI Performance**: Eliminating unnecessary UI re-renders for a smoother interface.
 Setup
 
-Follow these simple steps to set up Hex on your local environment:
+## **Setup**
 
 ```bash 
-// clone the repo 
+# clone the repo 
 
-// navigate to the project directory
-
+# navigate to the project directory
 cd hex 
 
-// install dependencies
-
+#install dependencies
 yarn install 
 
-// setup env 
-
+#setup env 
 cp cp .env.sample .env
 
-// start app
+# start app
 
 yarn start
 ```
