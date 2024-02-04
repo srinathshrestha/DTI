@@ -16,10 +16,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 import { formSchema } from "@/utils/formSchema";
-import { useModelStore } from "@/strore/modelStore";
+import { useModelStore } from "@/store/model";
 
 function AddModel() {
-  
   const form = useForm({
     resolver: zodResolver(formSchema),
   });

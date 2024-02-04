@@ -8,7 +8,7 @@ Hex is an innovative , minimalist model marketplace that empowers users to explo
 
 1. _Next.js_ : frontend and backend framework
 2. _Shadcn UI_ : ui library 
-3. _React Hook Form_ : form management
+3. _React Hook Form_ : form management and _Zustand_ : state management  
 4. _PostgreSQL DB_ : storing model data 
 5. _Redis_ : caching
 6. _Vercel Blob_ : object storage
@@ -22,9 +22,8 @@ Hex is an innovative , minimalist model marketplace that empowers users to explo
 
 ### Optimizations
 
-1. _API Response Optimization_: Ensuring  efficient responses from our API through caching.
-2. _UI Performance_: Eliminating unnecessary UI re-renders for a smoother interface.
-Setup
+1. _API Response Optimization_: Ensuring  efficient responses from our API through caching.(7s -> 1s in first response and 450ms in second response ...)
+2. _UI Performance_: Eliminating unnecessary UI re-renders for a smoother interface.(Load time - 950ms - 1sec on cached data  it is much faster)
 
 ## **Setup**
 
@@ -47,7 +46,7 @@ yarn dev
 
 ## Contributing
 
-Contributions to the chatGPT Clone project are welcome! If you have any suggestions, improvements, or feature requests, please feel free to open an issue or submit a pull request on the GitHub repository.
+Contributions to the hex are welcome! If you have any suggestions, improvements, or feature requests, please feel free to open an issue or submit a pull request on the GitHub repository.
 
 
 ## License

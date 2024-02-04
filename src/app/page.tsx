@@ -7,7 +7,7 @@ import ModelCard from "@/components/explore/card";
 import { Input } from "@/components/ui/input";
 import AddModel from "@/components/root/AddModel";
 import Footer from "@/components/Footer";
-import { useModelStore } from "@/strore/modelStore";
+import { useModelStore } from "@/store/model";
 
 function Page() {
   const { models, setModels, searchQuery, setSearchQuery } = useModelStore();

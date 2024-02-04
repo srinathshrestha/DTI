@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useFormStore } from "@/strore/form";
+import { useFormStore } from "@/store/form";
 import { Image } from "lucide-react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/form";
 import { Progress } from "@/components/ui/progress";
@@ -96,7 +96,7 @@ export default function UploadIcon({
               </FormItem>
             )}
           />
-          {uploading && <Progress value={progress} className="mt-2"/>}
+          {uploading && <Progress value={progress} className="mt-2" />}
         </div>
       </div>
     </div>
