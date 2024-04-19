@@ -66,7 +66,7 @@ function AddModel() {
           <DialogTitle>Add your own model</DialogTitle>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <UploadIcon
+             <UploadIcon
                 control={form.control}
                 label="Logo"
                 id="logo"

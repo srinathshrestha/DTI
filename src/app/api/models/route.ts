@@ -12,7 +12,7 @@ loadEnvConfig(projectDir);
 
 
 const redis = new Redis({
-  url: "https://us1-beloved-louse-41082.upstash.io",
+  url: "https://us1-tidy-phoenix-42168.upstash.io",
   token: process.env.REDIS_URL || "",
 });
 export async function GET(request: Request) {
