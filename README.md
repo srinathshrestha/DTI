@@ -1,6 +1,6 @@
 # **Hex**
 
-https://github.com/arunavabasu-03/hex/assets/73842340/68a83944-39f1-4dd1-86fe-7b68fa3977f1
+https://dti-kappa.vercel.app/
 
 Hex is an innovative , minimalist model marketplace that empowers users to explore featured models and effortlessly showcase their own model information.
 
@@ -29,7 +29,7 @@ Hex is an innovative , minimalist model marketplace that empowers users to explo
 
 ```bash 
 # clone the repo 
-git clone https://github.com/arunavabasu-03/hex.git
+git clone https://github.com/srinathshrestha/DTI.git
 
 # navigate to the project directory
 cd hex 
@@ -44,9 +44,6 @@ cp cp .env.sample .env
 yarn dev
 ```
 
-## Contributing
-
-Contributions to the hex are welcome! If you have any suggestions, improvements, or feature requests, please feel free to open an issue or submit a pull request on the GitHub repository.
 
 
 ## License
