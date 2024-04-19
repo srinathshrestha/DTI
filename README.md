@@ -1,8 +1,8 @@
 # **ModelHuB**
 
-https://github.com/arunavabasu-03/hex/assets/73842340/68a83944-39f1-4dd1-86fe-7b68fa3977f1
+https://dti-kappa.vercel.app/
 
-Hex is an innovative , minimalist model marketplace that empowers users to explore featured models and effortlessly showcase their own model information.
+ModelHuB is an innovative , minimalist model marketplace that empowers users to explore featured models and effortlessly showcase their own model information.
 
 ## **Tech Stack**
 
