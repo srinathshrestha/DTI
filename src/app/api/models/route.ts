@@ -48,6 +48,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   const req = await request.json();
+  console.log("req", req);
   const model = await db.insert(ModelsTable).values(req).returning();
   return NextResponse.json(model);
 }

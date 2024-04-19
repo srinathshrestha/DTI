@@ -36,7 +36,6 @@ function ModelDetailPage({ params }: { params: { slug: string } }) {
   if (!model) {
     return <p>Loading...</p>;
   }
-
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
@@ -54,11 +53,12 @@ function ModelDetailPage({ params }: { params: { slug: string } }) {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <h2 className="text-3xl font-bold">{model.name}</h2>
-          <Link href={model.link}>
+          <a href={"https://"+model.link}>
             <Button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">
               Try it out
             </Button>
-          </Link>
+          </a>
+      
           <p className="mt-4 text-gray-600">{model.description}</p>
         </section>
         <section className="py-12 px-4 bg-gray-100">
