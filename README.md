@@ -32,7 +32,7 @@ ModelHuB is an innovative , minimalist model marketplace that empowers users to 
 git clone https://github.com/srinathshrestha/DTI.git
 
 # navigate to the project directory
-cd hex 
+cd ModelHuB 
 
 #install dependencies
 yarn install 
